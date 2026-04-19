@@ -1,4 +1,4 @@
-/* PrecisionTech CNC — Main JS */
+/* Kumaran Industries — Main JS */
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const WA_NUMBER = '919791543130';   // 91 + 10-digit mobile
@@ -90,7 +90,7 @@ if (form) {
     const qty   = form.querySelector('[name=quantity]')?.value?.trim() || '';
 
     const msg = [
-      'Hello PrecisionTech CNC!',
+      'Hello Kumaran Industries!',
       '',
       'I would like to request a quote.',
       name  ? `Name: ${name}`        : '',
@@ -115,7 +115,7 @@ if (contactForm) {
     const message = contactForm.querySelector('[name=message]')?.value?.trim() || '';
 
     const msg = [
-      'Hello PrecisionTech CNC!',
+      'Hello Kumaran Industries!',
       '',
       name    ? `Name: ${name}`       : '',
       phone   ? `Phone: ${phone}`     : '',
