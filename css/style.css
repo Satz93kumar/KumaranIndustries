@@ -1,322 +1,133 @@
-/* Kumaran Industries — Design System v2 */
+/* Kumaran Industries — Design System v3 */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
-/* ─── Fonts (auto-loads for all pages) ───────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
-
-/* ─── Design tokens ──────────────────────────────────────────────────────── */
+/* ─── Tokens ──────────────────────────────────────────────────────────────── */
 :root {
-  --bg:           #F5EFE4;   /* warm cream */
-  --bg-card:      #EDE5D5;   /* slightly darker cream */
-  --bg-white:     #FDFAF5;   /* near-white with warmth */
-  --ink:          #1C1712;   /* warm near-black */
-  --ink-2:        #5C5245;   /* warm medium brown */
-  --copper:       #B05A1A;   /* burnt copper — primary accent */
-  --copper-lt:    #D4763A;   /* lighter copper for hover */
-  --copper-glow:  rgba(176,90,26,.14);
-  --steel:        #1D2E3F;   /* dark blue-steel for sections */
-  --steel-lt:     #2C4159;
-  --border:       #D8CEBC;
-  --radius:       12px;
+  --bg:         #F4EEE3;
+  --bg-card:    #EAE2D2;
+  --bg-white:   #FDFAF5;
+  --ink:        #1A1410;
+  --ink-2:      #594E44;
+  --copper:     #B05A1A;
+  --copper-lt:  #D4763A;
+  --copper-glow:rgba(176,90,26,.14);
+  --steel:      #1C2D3E;
+  --steel-lt:   #2A3F55;
+  --border:     #D5CABB;
+  --radius:     12px;
 }
 
-/* ─── Base ───────────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-}
-h1, h2, h3, h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  letter-spacing: -.01em;
-}
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;letter-spacing:-.01em}
 
-/* ─── Animations ─────────────────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes waRing {
-  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.65); }
-  70%  { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
-  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
-@keyframes spin-workpiece {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes tool-pulse {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(-5px); }
-}
-@keyframes chip-fly-a {
-  0%        { opacity: 0; transform: translate(0,0) scale(.5); }
-  15%       { opacity: 1; }
-  100%      { opacity: 0; transform: translate(20px,-18px) scale(1) rotate(40deg); }
-}
-@keyframes chip-fly-b {
-  0%        { opacity: 0; transform: translate(0,0); }
-  15%       { opacity: 1; }
-  100%      { opacity: 0; transform: translate(26px,-8px) rotate(-15deg); }
-}
-@keyframes chip-fly-c {
-  0%        { opacity: 0; transform: translate(0,0); }
-  20%       { opacity: 1; }
-  100%      { opacity: 0; transform: translate(12px,-24px) rotate(60deg); }
-}
-@keyframes glow-beat {
-  0%,100%  { opacity: .55; }
-  50%       { opacity: 1; }
-}
-@keyframes spark {
-  0%        { opacity: 0; transform: translate(0,0); }
-  30%       { opacity: 1; }
-  100%      { opacity: 0; transform: translate(var(--dx),var(--dy)); }
-}
+/* ─── Tailwind blue → copper (inner-page consistency, no HTML edits needed) ─ */
+.bg-blue-600,.bg-blue-700{background-color:var(--copper)!important}
+.hover\:bg-blue-600:hover,.hover\:bg-blue-700:hover{background-color:var(--copper-lt)!important}
+.text-blue-600,.text-blue-500{color:var(--copper)!important}
+.text-blue-400,.text-blue-300{color:var(--copper-lt)!important}
+.border-blue-600,.border-blue-500{border-color:var(--copper)!important}
+.bg-blue-50{background-color:#FDF0E3!important}
+.shadow-blue-200{--tw-shadow-color:rgba(176,90,26,.2)}
+.bg-gray-50{background-color:var(--bg-card)!important}
 
-.hero-fade  { animation: fadeUp .7s ease both; }
-.hero-fade2 { animation: fadeUp .7s .2s ease both; }
-.hero-fade3 { animation: fadeUp .7s .38s ease both; }
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes waRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.65)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes chuck-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes glow-pulse{0%,100%{opacity:.5;r:5}50%{opacity:1;r:8}}
+@keyframes chip-a{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(22px,-18px)rotate(40deg)}}
+@keyframes chip-b{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(28px,-7px)rotate(-15deg)}}
+@keyframes chip-c{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-26px)rotate(60deg)}}
+@keyframes chip-d{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(26px,6px)rotate(25deg)}}
+@keyframes dim-appear{from{opacity:0;transform:scaleX(.3)}to{opacity:.6;transform:scaleX(1)}}
 
-/* ─── Header ─────────────────────────────────────────────────────────────── */
-#mainHeader {
-  background: var(--ink);
-  transition: box-shadow .3s;
-}
-#mainHeader.scrolled {
-  box-shadow: 0 2px 24px rgba(0,0,0,.4);
-}
+.hero-fade {animation:fadeUp .7s ease both}
+.hero-fade2{animation:fadeUp .7s .18s ease both}
+.hero-fade3{animation:fadeUp .7s .34s ease both}
 
-/* ─── Mobile nav ─────────────────────────────────────────────────────────── */
-#mobileNav {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease, opacity .3s ease;
-  opacity: 0;
-}
-#mobileNav.open { max-height: 540px; opacity: 1; }
+/* ─── Chuck animation ─────────────────────────────────────────────────────── */
+.chuck-group{animation:chuck-spin 5s linear infinite;transform-origin:220px 220px}
+.glow-dot{animation:glow-pulse 1.1s ease-in-out infinite}
+.chip{stroke:#FFA030;stroke-width:1.8;stroke-linecap:round;fill:none}
+.chip-a{animation:chip-a 1.5s ease-out infinite}
+.chip-b{animation:chip-b 1.5s ease-out .38s infinite}
+.chip-c{animation:chip-c 1.5s ease-out .76s infinite}
+.chip-d{animation:chip-d 1.5s ease-out 1.14s infinite}
+.dim-line{animation:dim-appear .8s 1s ease both}
 
-/* ─── Hero (homepage) ────────────────────────────────────────────────────── */
-.hero-section {
-  background: var(--bg);
-  position: relative;
-  overflow: hidden;
-}
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(90deg, transparent 0, transparent 59px, rgba(176,90,26,.055) 59px, rgba(176,90,26,.055) 60px),
-    repeating-linear-gradient(0deg,  transparent 0, transparent 59px, rgba(176,90,26,.055) 59px, rgba(176,90,26,.055) 60px);
-  pointer-events: none;
-}
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+#mainHeader{background:var(--ink);transition:box-shadow .3s}
+#mainHeader.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.45)}
 
-/* ─── Lathe animation panel ──────────────────────────────────────────────── */
-.lathe-panel {
-  background: var(--steel);
-  border-radius: 16px;
-  padding: 3px;
-  box-shadow: 0 24px 64px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.07);
-}
-.lathe-svg { display: block; width: 100%; height: auto; border-radius: 14px; }
+/* ─── Mobile nav ──────────────────────────────────────────────────────────── */
+#mobileNav{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease;opacity:0}
+#mobileNav.open{max-height:540px;opacity:1}
 
-/* Chuck + workpiece rotation */
-.chuck-rotating {
-  animation: spin-workpiece 1.8s linear infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.surface-lines {
-  animation: spin-workpiece 1.8s linear infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.tool-assembly {
-  animation: tool-pulse 2.2s ease-in-out infinite;
-}
-.glow-dot {
-  animation: glow-beat 1.1s ease-in-out infinite;
-}
-.chip { stroke: #FFA040; stroke-width: 1.8; stroke-linecap: round; fill: none; }
-.chip-a { animation: chip-fly-a 1.4s ease-out infinite; }
-.chip-b { animation: chip-fly-b 1.4s ease-out .35s infinite; }
-.chip-c { animation: chip-fly-c 1.4s ease-out .7s infinite; }
-.chip-d { animation: chip-fly-a 1.4s ease-out 1.05s infinite; }
+/* ─── Hero section ────────────────────────────────────────────────────────── */
+.hero-section{background:var(--bg);position:relative;overflow:hidden}
+.hero-section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent 59px,rgba(176,90,26,.05) 59px,rgba(176,90,26,.05) 60px),repeating-linear-gradient(0deg,transparent 0,transparent 59px,rgba(176,90,26,.05) 59px,rgba(176,90,26,.05) 60px);pointer-events:none}
 
-/* ─── Scroll reveal ──────────────────────────────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-delay1 { transition-delay: .1s; }
-.reveal-delay2 { transition-delay: .2s; }
-.reveal-delay3 { transition-delay: .3s; }
-.reveal-delay4 { transition-delay: .4s; }
+/* ─── Animation panel ─────────────────────────────────────────────────────── */
+.anim-panel{background:var(--steel);border-radius:18px;padding:3px;box-shadow:0 28px 72px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.07)}
+.anim-svg{display:block;width:100%;height:auto;border-radius:16px}
 
-/* ─── Copper accent bar ──────────────────────────────────────────────────── */
-.copper-bar {
-  width: 44px; height: 3px;
-  background: var(--copper);
-  border-radius: 2px;
-  margin: .8rem 0 1.4rem;
-}
-.copper-bar.mx-auto { margin-left: auto; margin-right: auto; }
+/* ─── Scroll reveal ───────────────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay1{transition-delay:.1s}
+.reveal-delay2{transition-delay:.2s}
+.reveal-delay3{transition-delay:.3s}
 
-/* legacy alias used in inner pages */
-.blue-bar {
-  width: 44px; height: 3px;
-  background: var(--copper);
-  border-radius: 2px;
-  margin: .8rem 0 1.4rem;
-}
+/* ─── Accent bar ──────────────────────────────────────────────────────────── */
+.copper-bar,.blue-bar{width:44px;height:3px;background:var(--copper);border-radius:2px;margin:.8rem 0 1.4rem}
 
-/* ─── Section label ──────────────────────────────────────────────────────── */
-.section-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--copper);
-}
+/* ─── Section label ───────────────────────────────────────────────────────── */
+.section-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--copper)}
 
-/* ─── Cards (light bg) ───────────────────────────────────────────────────── */
-.ki-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.ki-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 44px rgba(28,23,18,.09);
-}
+/* ─── Cards ───────────────────────────────────────────────────────────────── */
+.ki-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius);transition:transform .25s ease,box-shadow .25s ease}
+.ki-card:hover,.card-hover:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(26,20,16,.1)}
+.card-hover{transition:transform .25s ease,box-shadow .25s ease}
 
-/* service icon box */
-.svc-icon {
-  width: 52px; height: 52px;
-  border-radius: 10px;
-  background: #FDF0E3;
-  color: var(--copper);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
+/* ─── Service icon ────────────────────────────────────────────────────────── */
+.svc-icon,.icon-box{width:52px;height:52px;border-radius:10px;background:#FDF0E3;color:var(--copper);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-/* ─── Stats strip ────────────────────────────────────────────────────────── */
-.stat-strip {
-  background: var(--steel);
-}
+/* ─── Stats strip ─────────────────────────────────────────────────────────── */
+.stat-strip{background:var(--steel)}
 
-/* ─── Product cards (dark section) ──────────────────────────────────────── */
-.prod-card {
-  background: var(--steel-lt);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: var(--radius);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.prod-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 44px rgba(0,0,0,.3);
-}
+/* ─── Product cards ───────────────────────────────────────────────────────── */
+.prod-card{background:var(--steel-lt);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);transition:transform .25s ease,box-shadow .25s ease}
+.prod-card:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.3)}
 
-/* ─── Industry tags ──────────────────────────────────────────────────────── */
-.ind-tag {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .5rem 1.1rem;
-  background: var(--bg-white);
-  border: 1.5px solid var(--border);
-  border-radius: 999px;
-  font-size: .875rem; font-weight: 500;
-  color: var(--ink-2);
-  transition: all .2s;
-}
-.ind-tag:hover { background: var(--copper); color: #fff; border-color: var(--copper); }
+/* ─── Industry tags ───────────────────────────────────────────────────────── */
+.ind-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;background:var(--bg-white);border:1.5px solid var(--border);border-radius:999px;font-size:.875rem;font-weight:500;color:var(--ink-2);transition:all .2s}
+.ind-tag:hover{background:var(--copper);color:#fff;border-color:var(--copper)}
 
-/* ─── Form fields ────────────────────────────────────────────────────────── */
-.field {
-  width: 100%;
-  padding: .75rem 1rem;
-  border: 1.5px solid var(--border);
-  border-radius: .5rem;
-  font-size: .9375rem;
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg-white);
-  color: var(--ink);
-  transition: border-color .2s, box-shadow .2s;
-  -webkit-appearance: none;
-}
-.field:focus {
-  outline: none;
-  border-color: var(--copper);
-  box-shadow: 0 0 0 3px var(--copper-glow);
-}
-.field::placeholder { color: #A89A85; }
+/* ─── Form ────────────────────────────────────────────────────────────────── */
+.field{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:.5rem;font-size:.9375rem;font-family:'DM Sans',sans-serif;background:var(--bg-white);color:var(--ink);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.field:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px var(--copper-glow)}
+.field::placeholder{color:#A89A85}
 
-/* ─── WhatsApp float ─────────────────────────────────────────────────────── */
-.wa-float {
-  position: fixed;
-  bottom: 90px; right: 20px;
-  z-index: 999;
-  width: 58px; height: 58px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,.45);
-  animation: waRing 2.4s ease infinite;
-  transition: transform .2s;
-}
-.wa-float:hover { transform: scale(1.1); }
-@media (min-width:768px) { .wa-float { bottom: 30px; right: 28px; } }
+/* ─── WhatsApp float ──────────────────────────────────────────────────────── */
+.wa-float{position:fixed;bottom:90px;right:20px;z-index:999;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:waRing 2.4s ease infinite;transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+@media(min-width:768px){.wa-float{bottom:30px;right:28px}}
 
-/* ─── Mobile sticky CTA bar ──────────────────────────────────────────────── */
-.mobile-cta {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  display: flex; z-index: 998;
-}
-@media (min-width:768px) { .mobile-cta { display: none; } }
+/* ─── Mobile CTA ──────────────────────────────────────────────────────────── */
+.mobile-cta{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:998}
+@media(min-width:768px){.mobile-cta{display:none}}
 
-/* ─── Hero bg (used in inner pages / SEO pages) ──────────────────────────── */
-.hero-bg {
-  background: linear-gradient(135deg, var(--steel) 0%, #152840 55%, #1A2F48 100%);
-}
-.seo-hero { background: linear-gradient(135deg, var(--steel) 0%, #152840 100%); }
+/* ─── Shared section backgrounds ─────────────────────────────────────────── */
+.hero-bg{background:linear-gradient(135deg,var(--steel) 0%,#152840 55%,#1A2F48 100%)}
+.seo-hero{background:linear-gradient(135deg,var(--steel) 0%,#152840 100%)}
+.cta-section{background:var(--steel)}
+.footer-bg{background:#0E1820}
 
-/* ─── Gradient text (copper version) ────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(120deg, var(--copper), var(--copper-lt));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* ─── Gradient text ───────────────────────────────────────────────────────── */
+.gradient-text{background:linear-gradient(120deg,var(--copper),var(--copper-lt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* ─── CTA section ────────────────────────────────────────────────────────── */
-.cta-section { background: var(--steel); }
-
-/* ─── Footer ─────────────────────────────────────────────────────────────── */
-.footer-bg { background: #0E1720; }
-
-/* ─── Icon box (inner pages) ─────────────────────────────────────────────── */
-.icon-box {
-  width: 52px; height: 52px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 10px;
-  background: #FDF0E3;
-  color: var(--copper);
-  flex-shrink: 0;
-}
-
-/* card-hover alias (inner pages) */
-.card-hover {
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 44px rgba(28,23,18,.1);
-}
-
-/* ─── Responsive ─────────────────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  h1 { font-size: 2.5rem !important; line-height: 1.08 !important; }
-  h2 { font-size: 1.9rem !important; }
-}
+/* ─── Mobile responsive ───────────────────────────────────────────────────── */
+@media(max-width:640px){h1{font-size:2.6rem!important;line-height:1.08!important}h2{font-size:1.9rem!important}}
