@@ -75,7 +75,8 @@ const page = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-link').forEach(a => {
   const href = a.getAttribute('href');
   if (href === page || (page === '' && href === 'index.html')) {
-    a.classList.add('text-blue-400');
+    a.classList.remove('text-gray-300');
+    a.classList.add('text-blue-400', 'font-semibold');
   }
 });
 
